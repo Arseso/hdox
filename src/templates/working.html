@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Analyze VK Profile</h1>
+<form method="POST" action="{{ url_for('analyze') }}">
+    <div class="form-group">
+        <label for="vkLink">VK Profile Link:</label>
+        <input type="text" class="form-control" id="vkLink" name="vkLink" placeholder="Enter VK profile link">
+    </div>
+    <button type="submit" class="btn btn-primary">Analyze</button>
+</form>
+
+{% if result %}
+<div class="mt-4">
+    <h2>Analysis Result</h2>
+    <p><strong>Name:</strong> {{ result.name }}</p>
+    <p><strong>Age:</strong> {{ result.age }}</p>
+    <p><strong>Location:</strong> {{ result.location }}</p>
+    <!-- Add more fields as needed -->
+</div>
+{% endif %}
+{% endblock %}
+
