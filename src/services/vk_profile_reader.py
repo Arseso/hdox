@@ -6,10 +6,11 @@ class AnalysisResult(BaseModel):
     name: str
 
 def vk_profile_analize(link: str) -> AnalysisResult:
+    raise NotImplementedError
     try:
         page = get(link)
     except exceptions.InvalidURL:
         return AnalysisResult(name= "Undefined")
     soup = BeautifulSoup(page.content)
-    h2 = soup.find_all('p', class="", recursive=True)
+    #h2 = soup.find_all('p', class="", recursive=True)
         

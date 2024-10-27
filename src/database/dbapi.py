@@ -1,5 +1,5 @@
 import asyncpg
-from src.web import config
+from src import config
 
 async def connection() -> asyncpg.connection:
     connection = await asyncpg.connect(host= config.DB_HOST,

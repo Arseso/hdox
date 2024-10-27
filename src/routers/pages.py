@@ -1,8 +1,8 @@
-from typing import List
+
 from fastapi import APIRouter, Request, Form
 from fastapi.templating import Jinja2Templates
 
-from src.services.vk_profile_reader import analyze_vk_profile
+from src.services.vk_profile_reader import vk_profile_analize
 
 router_base = APIRouter(
     prefix=''
@@ -27,7 +27,7 @@ async def get_texts(request: Request):
 @router_working.post('/')
 async def analyze(request: Request, vkLink: str = Form(...)):
     # Here you would add the logic to analyze the VK profile
-    result = analyze_vk_profile(vkLink)
+    result = vk_profile_analize(vkLink)
     return templates.TemplateResponse("working.html", {"request": request, "result": result})
 
 @router_working.get('/upload/')

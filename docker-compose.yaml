@@ -13,9 +13,9 @@ services:
       POSTGRES_USER: $DB_USER
       POSTGRES_PASSWORD: $DB_PASS
     networks:
-      - tg_bot
+      - hdox
     volumes:
-      - bot_pg:/var/lib/postgresql/data
+      - hdox_pg:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin"]
   web:
@@ -26,8 +26,10 @@ services:
       DB_PORT: $DB_PORT
       DB_PASS: $DB_PASS
       DB_HOST: $DB_HOST
+    ports:
+      - 127.0.0.1:8000:8000
     networks:
-      - web
+      - hdox
     volumes:
       - ./out/:/app/out/
     depends_on:
@@ -36,7 +38,7 @@ services:
   pg_admin:
     image: dpage/pgadmin4
     networks:
-      - web
+      - hdox
     environment:
       PGADMIN_DEFAULT_EMAIL: adm@adm.ru
       PGADMIN_DEFAULT_PASSWORD: admin
